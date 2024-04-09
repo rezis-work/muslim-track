@@ -1,6 +1,6 @@
 const Modal = ({ handleClose, count }) => {
   return (
-    <div className=" w-[500px] h-[500px] absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 bg-[#087f5b] flex justify-center items-center rounded-md">
+    <div className=" w-full h-[300px] md:w-[700px] md:h-[700px] absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 bg-[#087f5b] flex justify-center items-center rounded-md">
       <h1 className="text-3xl font-bold text-white">
         You reach the Goal: {count}
       </h1>

@@ -113,8 +113,12 @@ const MainPage = () => {
             <div className=" w-[300px] h-[300px] bg-[#087f5b] rounded-full flex items-center justify-center">
               <input
                 type="number"
-                className={`flex justify-center  text-white font-bold bg-transparent w-[150px] h-20 text-7xl outline-none ${
-                  count > 9 ? "pl-[35px]" : "pl-[55px]"
+                className={`flex justify-center  text-white font-bold bg-transparent w-[250px] h-20 text-7xl outline-none ${
+                  count > 9 && count < 99
+                    ? "pl-[85px]"
+                    : count > 99
+                    ? " pl-[63px]"
+                    : "pl-[105px]"
                 }`}
                 value={count}
                 onChange={(e) => setCount(parseInt(e.target.value))}
