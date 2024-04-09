@@ -4,7 +4,7 @@ import MainPage from "./components/MainPage";
 
 function App() {
   return (
-    <div className=" h-screen bg-[#343a40]">
+    <div className=" h-screen bg-[#212529]">
       <Header />
       <MainPage />
       <Footer />

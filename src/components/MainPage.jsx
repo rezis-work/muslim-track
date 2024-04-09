@@ -43,8 +43,8 @@ const MainPage = () => {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      event.preventDefault();
-      if (event.code === "Space") {
+      if (event.code === "Space" || event.key === " ") {
+        event.preventDefault();
         plus();
       }
     };
@@ -54,17 +54,15 @@ const MainPage = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [count, plus]);
+  }, [plus]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       switch (event.code) {
         case "ArrowUp":
-          event.preventDefault();
           plus();
           break;
         case "ArrowDown":
-          event.preventDefault();
           minus();
           break;
         case "Space":
@@ -83,27 +81,30 @@ const MainPage = () => {
     };
   }, [plus, minus]);
 
+  console.log(count);
+  console.log(goal);
+
   return (
     <>
-      <div className=" w-[300px] md:w-[500px] lg:w-[1000px] bg-[#343a40] flex justify-center items-center mx-auto">
+      <div className=" w-[300px] md:w-[500px] lg:w-[1000px] bg-[#212529] flex justify-center items-center mx-auto">
         <div className=" flex justify-center w-full flex-col gap-10">
           <div className=" flex justify-center gap-5  items-center h-20 w-full">
             <input
               type="number"
               placeholder="Enter Goal"
               value={goal}
-              onChange={(e) => setGoal(e.target.value)}
-              className=" border-[1px] p-2 lg:text-xl text-[#2f9e44] rounded-md border-[#2f9e44] placeholder:text-[#2f9e44] w-32"
+              onChange={(e) => setGoal(parseInt(e.target.value))}
+              className=" border-[1px] p-2 lg:text-xl text-[#2f9e44] rounded-md border-[#2f9e44] placeholder:text-[#2f9e44] w-32 bg-[#e9ecef]"
             />
             <button
               onClick={handleEditClick}
-              className=" lg:text-2xl bg-[#087f5b]  px-[20px] py-1 rounded-md text-[white] hover:bg-green-800  duration-300 border-none"
+              className=" lg:text-2xl bg-[#087f5b]  px-[20px] py-1 rounded-xl text-[white] hover:bg-green-800  duration-300 border-none w-[120px] h-[50px]"
             >
               Edit
             </button>
             <button
               onClick={reset}
-              className="  lg:text-2xl bg-[#087f5b]  px-[20px] py-1 rounded-md text-[white] hover:bg-green-800  duration-300 border-none"
+              className="  lg:text-2xl bg-[#087f5b]  px-[20px] py-1 rounded-xl text-[white] hover:bg-green-800  duration-300 border-none w-[120px] h-[50px] "
             >
               Reset
             </button>
@@ -111,7 +112,7 @@ const MainPage = () => {
           <div className=" w-full justify-center items-center flex flex-col gap-8">
             <div className=" w-[300px] h-[300px] bg-[#087f5b] rounded-full flex items-center justify-center">
               <input
-                type="text"
+                type="number"
                 className={`flex justify-center  text-white font-bold bg-transparent w-[150px] h-20 text-7xl outline-none ${
                   count > 9 ? "pl-[35px]" : "pl-[55px]"
                 }`}
@@ -120,16 +121,16 @@ const MainPage = () => {
                 ref={countInputRef}
               />
             </div>
-            <div className=" border-[1px] border-[#51cf66] w-[300px] flex justify-between items-center h-20 px-5 rounded-md">
+            <div className=" border-[1px] border-[#087f5b] w-[360px] flex justify-between items-center h-[100px] px-5 rounded-md">
               <button
                 onClick={plus}
-                className=" text-2xl bg-[#087f5b] px-5 py-2 rounded-xl text-white hover:bg-green-800"
+                className="w-[120px] h-[50px] text-2xl bg-[#087f5b] px-5 py-2 rounded-xl text-white hover:bg-green-800"
               >
                 Up
               </button>
               <button
                 onClick={minus}
-                className=" text-2xl bg-[#087f5b] px-5 py-2 rounded-xl text-white hover:bg-green-800"
+                className=" w-[120px] h-[50px] text-2xl bg-[#087f5b] px-5 py-2 rounded-xl text-white hover:bg-green-800"
               >
                 Down
               </button>
