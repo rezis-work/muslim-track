@@ -2,7 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 
 const MainPage = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    const storedCount = localStorage.getItem("count");
+    return storedCount ? parseInt(storedCount) : 0;
+  });
   const [goal, setGoal] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const countInputRef = useRef(null);
@@ -40,6 +43,10 @@ const MainPage = () => {
     setCount(0);
     setGoal(0);
   };
+
+  useEffect(() => {
+    localStorage.setItem("count", count.toString());
+  }, [count]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
